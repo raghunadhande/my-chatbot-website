@@ -68,8 +68,61 @@
 </section>
 
 <section>
+  <h2>🚰 Submit a Water Complaint</h2>
+
+  <form id="complaintForm">
+
+    <label>Name</label>
+    <input type="text" name="name" required>
+
+    <label>Mobile Number</label>
+    <input type="tel" name="mobile" required>
+
+    <label>Area / Village</label>
+    <input type="text" name="area" required>
+
+    <label>Complaint Type</label>
+    <select name="complaintType" required>
+      <option value="">Select complaint type</option>
+      <option value="Leakage / Pipeline Damage">Leakage / Pipeline Damage</option>
+      <option value="Dirty / Contaminated Water">Dirty / Contaminated Water</option>
+      <option value="Low Pressure / Irregular Supply">Low Pressure / Irregular Supply</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label>Complaint Description</label>
+    <textarea name="description" rows="5" required></textarea>
+
+    <button type="submit">Submit Complaint</button>
+
+    <p id="complaintStatus"></p>
+
+  </form>
+</section>
+  <section>
   <h2>Contact</h2>
   <p>Email: example@email.com</p>
-</section><script>
+</section>
+  <script>
+const complaintForm = document.getElementById("complaintForm");
+
+complaintForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const formData = new URLSearchParams(new FormData(complaintForm));
+
+  fetch("https://script.google.com/macros/s/AKfycbxvQk6rCiNU_569PXLiGazZGz52kZdCxrg6tg47vGg3RZRiCJBCRlGSvU_fQDcqz17VQw/exec", {
+    method: "POST",
+    body: formData,
+    mode: "no-cors"
+  });
+
+  document.getElementById("complaintStatus").innerText =
+    "Complaint submitted successfully!";
+  
+  complaintForm.reset();
+});
+  </script>
+  <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="O9o-UbvbEslXcRq75M1JB";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
